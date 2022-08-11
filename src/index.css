@@ -1,13 +1,43 @@
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
+}
+
+.rootClassname {
+  display: flex;
+  flex-direction: column;
+  block-size: 100%;
+  gap: 10px;
+}
+.rootClassname > .rdg {
+  flex: 1;
+}
+.toolbarClassname {
+  text-align: end;
+}
+
+.filterContainerClassname .filter-cell {
+  line-height: 35px;
+  padding: 0;
+}
+.filterContainerClassname .filter-cell > div {
+  padding-block: 0;
+  padding-inline: 8px;
+}
+.filterContainerClassname .filter-cell > div:first-child {
+  border-block-end: 1px solid var(--rdg-border-color);
+}
+.filterClassname {
+  inline-size: 100%;
+  padding: 4px;
+  font-size: 14px;
 }
