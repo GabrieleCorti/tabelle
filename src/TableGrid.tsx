@@ -36,6 +36,28 @@ function inputStopPropagation(event: React.KeyboardEvent<HTMLInputElement>) {
   }
 }
 
+function FilterRenderer<R, SR, T extends HTMLOrSVGElement>({
+  isCellSelected,
+  column,
+  children,
+}: HeaderRendererProps<R, SR> & {
+  children: (args: {
+    ref: React.RefObject<T>;
+    tabIndex: number;
+    filters: Filter;
+  }) => React.ReactElement;
+}) {
+  const filters = useContext(FilterContext)!;
+  const { ref, tabIndex } = useFocusRef<T>(isCellSelected);
+
+  return (
+    <>
+      <div>{column.name}</div>
+      {filters.enabled && <div>{children({ ref, tabIndex, filters })}</div>}
+    </>
+  );
+}
+
 export default function HeaderFilters({ direction, data }: Props) {
   const [filters, setFilters] = useState<Filter>({
     email: "",
@@ -204,27 +226,5 @@ export default function HeaderFilters({ direction, data }: Props) {
         />
       </FilterContext.Provider>
     </div>
-  );
-}
-
-function FilterRenderer<R, SR, T extends HTMLOrSVGElement>({
-  isCellSelected,
-  column,
-  children,
-}: HeaderRendererProps<R, SR> & {
-  children: (args: {
-    ref: React.RefObject<T>;
-    tabIndex: number;
-    filters: Filter;
-  }) => React.ReactElement;
-}) {
-  const filters = useContext(FilterContext)!;
-  const { ref, tabIndex } = useFocusRef<T>(isCellSelected);
-
-  return (
-    <>
-      <div>{column.name}</div>
-      {filters.enabled && <div>{children({ ref, tabIndex, filters })}</div>}
-    </>
   );
 }
