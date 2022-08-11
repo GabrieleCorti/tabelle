@@ -17,6 +17,8 @@ code {
   flex-direction: column;
   block-size: 100%;
   gap: 10px;
+  /* solo per code sandbox su browser funziona */
+  height: 100vh;
 }
 .rootClassname > .rdg {
   flex: 1;
